@@ -4,7 +4,9 @@
 use Illuminate\Support\Facades\Route;
 
 $controllers = [
-  ['name' =>'category','except'=>['remove']]
+  ['name' =>'category','except'=>[]],
+  ['name' =>'seller','except'=>[]],
+  ['name' =>'purchase','except'=>[]],
 ];
 
 function crudRoutes($c)

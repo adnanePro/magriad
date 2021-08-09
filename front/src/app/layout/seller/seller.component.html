@@ -1,0 +1,99 @@
+<div>
+
+    <h4 class="text-muted mb-4">Les veunders </h4>
+    <div class="text-right">
+      <button pButton type="button" [label]="'Nouveau veunder '" class="p-button-sm mb-1" (click)="openDialog()" ></button>
+      </div>
+    <div class="row mb-4">
+  
+      <div class="col-md-12">
+        <div class="card border-0 rounded-0">
+       
+          <div class="card-body">
+            <div class="table-responsive-md">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">CIN</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Dernière Achat</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let seller of selleries;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{seller.name}}</td>
+                    <td>{{seller.phone}}</td>
+                    <td >{{seller.cin}}</td>
+                    
+                    <td>{{seller.city}}</td>                
+                    <td>2021/08/08</td>       
+                    <td>
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="edit(seller)">
+                        <i class="far fa-edit"></i>
+                      </a>
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2" (click)="delete(seller)">
+                        <i class="far fa-trash-alt"></i>
+                      </a>
+                  
+                    </td>         
+         
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+
+  </div>
+  
+  
+  <p-dialog [header]="buttonLabel" [(visible)]="display" [style]="{width: '50vw'}">
+    <form>
+     
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nom :</label>
+          <input type="text" class="form-control rounded-0" 
+           [(ngModel)]="seller.name" name="name">
+           <label for="exampleInputEmail1">Téléphone :</label>
+           <input type="tel" class="form-control rounded-0" 
+            [(ngModel)]="seller.phone" name="tel">
+            <label for="exampleInputEmail1">CIN :</label>
+           <input type="text" class="form-control rounded-0" 
+            [(ngModel)]="seller.cin" name="cin">
+            <label for="exampleInputEmail1">La ville :</label>
+            <input type="text" class="form-control rounded-0" 
+             [(ngModel)]="seller.city" name="city">
+
+        </div>
+        <button type="button" class="btn btn-lightning rounded-0 mb-2 mr-2" (click)="updateOrCreate()">Valider</button>
+        <button type="button " class="btn btn-outline-lightning rounded-0 mb-2">Annuler</button>
+      </form>
+</p-dialog>
+
+<p-confirmDialog #cd header="Confirmation " icon="pi pi-exclamation-triangle ">
+    <p-footer>
+      <p-button
+        type="button "
+        icon="pi pi-times "
+        label="Non "
+        (click)="cd.reject()"
+      ></p-button>
+      <p-button
+        type="button "
+        icon="pi pi-check "
+        label="Oui "
+        (click)="cd.accept()"
+      ></p-button>
+    </p-footer>
+  </p-confirmDialog>

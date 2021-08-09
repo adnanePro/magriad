@@ -18,8 +18,8 @@ class Purchase extends Migration
             $table->date('datePurchase');
             $table->string('city');
             $table->float('transport');
-            $table->float('fillUp');
-            $table->float('strip');
+            $table->float('fillUp')->default(0);
+            $table->float('strip')->default(0);
             $table->timestamps();
         });
     }
