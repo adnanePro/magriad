@@ -11,12 +11,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { NewPurchaseComponent } from './new-purchase/new-purchase.component';
 import {AccordionModule} from 'primeng/accordion';
+import { AddProductsComponent } from './add-products/add-products.component';
 
 @NgModule({
   declarations: [
     PurchaseComponent,
     ListComponent,
-    NewPurchaseComponent
+    NewPurchaseComponent,
+    AddProductsComponent
   ],
   imports: [
     CommonModule,

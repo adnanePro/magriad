@@ -1,0 +1,82 @@
+<div class="text-right">
+    <button pButton type="button" [label]="'Nouveau produit '" class="p-button-sm mb-1" (click)="display= true" ></button>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Catégorie</th>
+              <th scope="col">Quantité</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Total</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products;let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{product.name}}</td>
+              <td>{{product.category.name}}</td>
+              <td>{{product.qte}}</td>
+              <td class="price">{{product.purshasePrice}}DH</td>
+              <td class="price">{{product.getTotal()}}DH</td>
+              <td>
+                <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="edit(product)">
+                  <i class="far fa-edit"></i>
+                </a>
+                <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2" (click)="delete(product)">
+                  <i class="far fa-trash-alt"></i>
+                </a>
+            
+              </td>         
+              
+            </tr>
+       
+          </tbody>
+        </table>
+      </div>
+      <p-dialog [header]="buttonLabel" [(visible)]="display" [style]="{width: '50vw'}">
+        <form>
+         
+            <div class="form-group">
+              
+              <label for="exampleInputEmail1">Nom :</label>
+              <input type="text" class="form-control rounded-0"  aria-describedby="emailHelp"
+               [(ngModel)]="product.name" name="name">
+               <label for="exampleInputEmail1">Catégorie :</label>
+          <select  class="form-control rounded-0" name="cat" [(ngModel)]="product.category_id">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
+          <label for="exampleInputEmail1">Prix unitaire :</label>
+          <input type="text" class="form-control rounded-0"  aria-describedby="emailHelp"
+           [(ngModel)]="product.purshasePrice" name="price">
+           <label for="exampleInputEmail1">Quantité :</label>
+           <input type="text" class="form-control rounded-0"  aria-describedby="emailHelp"
+            [(ngModel)]="product.qte" name="qte">
+           <label for="exampleInputEmail1" class=" mb-1 mt-1" *ngIf="product.qte && product.purshasePrice">Total : <span class="price">{{product.getTotal()}} DH</span> </label>
+
+            </div>
+            <button type="button" class="btn btn-lightning rounded-0 mb-2 mr-2" (click)="updateOrCreate()">Valider</button>
+            <button type="button " class="btn btn-outline-lightning rounded-0 mb-2">Annuler</button>
+          </form>
+    </p-dialog>
+    
+    <p-confirmDialog #cd header="Confirmation " icon="pi pi-exclamation-triangle ">
+        <p-footer>
+          <p-button
+            type="button "
+            icon="pi pi-times "
+            label="Non "
+            (click)="cd.reject()"
+          ></p-button>
+          <p-button
+            type="button "
+            icon="pi pi-check "
+            label="Oui "
+            (click)="cd.accept()"
+          ></p-button>
+        </p-footer>
+      </p-confirmDialog>
+    

@@ -24,7 +24,7 @@ class Product extends Migration
             $table->foreign('category_id')->references('id')->on('category');
             $table->unsignedInteger('seller_id');
             $table->foreign('seller_id')->references('id')->on('seller');
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('product');
             $table->timestamps();
         });

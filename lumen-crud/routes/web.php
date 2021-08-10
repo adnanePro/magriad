@@ -20,10 +20,13 @@ $router->get('/', function () use ($router) {
 
 Route::group(['prefix' => 'api'], function () use ($controllers) {
 
-    foreach ($controllers as $controller) {
-        crudRoutes($controller);
-    }
     Route::group(['prefix' => 'user'], function () {
         Route::post("authentification", "UserController@authentification");
     });
+    Route::group(['prefix' => 'product'], function () {
+        Route::post("get-by-seller-and-purchase", "ProductController@getByPurchaseAndSeller");
+    });
+    foreach ($controllers as $controller) {
+        crudRoutes($controller);
+    }
 });

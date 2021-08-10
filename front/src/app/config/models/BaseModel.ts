@@ -2,6 +2,9 @@ export class BaseModel {
     public nullable =  [];
     protected attributRequired = [];
     id:any;
+    created_at:any;
+    updated_at:any;
+
 
     isNewObject(){
      return   this.id === undefined ? true : false
