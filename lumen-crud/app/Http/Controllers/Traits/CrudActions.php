@@ -30,7 +30,7 @@ trait CrudActions
 	public function get($id)
 	{
 		$m = self::MODEL;
-		$model = $m::find($id);
+		$model = $m::getById($id);
 		if (is_null($model)) {
 			return $this->respond('not_found');
 		}

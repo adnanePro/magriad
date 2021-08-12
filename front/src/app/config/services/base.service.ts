@@ -19,6 +19,6 @@ export class BaseService {
     params.map(str=>{
       path+=`${str}/`
     })
-    return path;
+    return path.substring(0,path.length - 1);
   }
 }

@@ -36,7 +36,9 @@ export class ListComponent implements OnInit {
   }
   private getPurchases(){
     this.purchaseService.getAll().subscribe((data:Purchase[])=>{
-      this.purchases = data;
+      this.purchases = data.map(purchase=>{
+        return new Purchase().make(purchase);
+      });
     })
   }
   edit(e){

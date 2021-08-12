@@ -29,15 +29,16 @@
                     <th scope="row">1</th>
                     <td>{{purchase.datePurchase}}</td>
                     <td>{{purchase.city}}</td>
-                    <td>{{purchase.price}}</td>
-                    <td>{{purchase.charges}}</td>
-                    <td>{{purchase.getTotal()}}</td>
+                    <td  class="price">{{purchase.price}}DH</td>
+                    <td class="price-danger">{{purchase.charges}}DH</td>
+                    <td>{{purchase.getTotal()}}DH</td>
  
                     <td>
-                      <span class="badge badge-primary rounded-0 p-1">Fixed</span>
+                      <span class="badge  rounded-0 p-1" [ngClass]="purchase.status ? 'badge-success':'badge-primary'">{{purchase.getStatus()}}</span>
                     </td>
                     <td>
-                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 ">
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 "
+                       [routerLink]="['/purchase/new',purchase.id]">
                         <i class="far fa-edit"></i>
                       </a>
                       <a class="btn btn-sm btn-outline-lightning rounded-0">

@@ -12,6 +12,10 @@ abstract class BaseModel extends Model
   {
     return self::all();
   }
+  public static function getById($id)
+  {
+    return self::where('id',$id)->first();
+  }
 
   public static  function inCreating()
   {
