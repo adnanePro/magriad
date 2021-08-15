@@ -22,7 +22,7 @@ class Purchase extends BaseModel
 
     }
     public function sellers(){
-        return $this->belongsToMany(Seller::class,Product::class);
+        return $this->belongsToMany(Seller::class,Product::class)->distinct();
     }
     public function getPriceAttribute(){
 
