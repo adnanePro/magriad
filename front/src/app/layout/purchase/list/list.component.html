@@ -41,8 +41,12 @@
                        [routerLink]="['/purchase/new',purchase.id]">
                         <i class="far fa-edit"></i>
                       </a>
-                      <a class="btn btn-sm btn-outline-lightning rounded-0">
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2">
                         <i class="far fa-trash-alt"></i>
+                      </a>
+                      <a class="btn btn-sm btn-outline-lightning rounded-0" 
+                      [routerLink]="['/purchase/view',purchase.id]">
+                        <i class="far fa-eye"></i>
                       </a>
                     </td>
                   </tr>

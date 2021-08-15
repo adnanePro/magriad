@@ -11,6 +11,7 @@ export class Purchase extends BaseModel {
     status:boolean;
     charges:any;
     sellers:Seller[];
+    percentage:any;
 
     getTotal(){
         return this.charges + this.price;

@@ -10,9 +10,13 @@ export class Product extends BaseModel {
    seller_id:any;
    product_id?:any;
    category:Category
+   charges:any;
+  
+   percentage:any;
 
-   getTotal(){
-       return this.qte*this.purshasePrice;
+   getTotal(charge=false){
+       const val = charge ? this.charges : 0;
+       return this.qte*this.purshasePrice + val;
    }
 
 }

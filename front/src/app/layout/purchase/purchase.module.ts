@@ -12,13 +12,17 @@ import { ConfirmationService } from 'primeng/api';
 import { NewPurchaseComponent } from './new-purchase/new-purchase.component';
 import {AccordionModule} from 'primeng/accordion';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { ViewPurchaseComponent } from './view-purchase/view-purchase.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 
 @NgModule({
   declarations: [
     PurchaseComponent,
     ListComponent,
     NewPurchaseComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    ViewPurchaseComponent,
+    ViewProductsComponent
   ],
   imports: [
     CommonModule,

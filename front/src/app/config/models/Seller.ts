@@ -5,5 +5,6 @@ export class Seller extends BaseModel {
    phone:string;
    cin:string;
    city:string;
+   pivot:{purchase_id:string,seller_id}
 
 }
