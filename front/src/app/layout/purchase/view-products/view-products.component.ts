@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/config/models/Product';
 import { Seller } from 'src/app/config/models/Seller';
 import { ProductService } from 'src/app/config/services/product.service';
@@ -11,11 +11,13 @@ import { ProductService } from 'src/app/config/services/product.service';
 export class ViewProductsComponent implements OnInit {
   @Input() seller:Seller;
   products:Product[];
+ @Output() count:EventEmitter<number> =new EventEmitter(); 
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     this.productService.getByPurchaseAndSeller(this.seller.id,this.seller.pivot.purchase_id).subscribe(products=>{
       this.products = products;
+      this.count.emit(this.products.length);
     })
   }
 

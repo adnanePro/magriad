@@ -9,13 +9,49 @@
           
             <div class="row">
       <div class="col-md-12">
+<br>
+<p-fieldset legend="Informations" class="mb-2">
+  <div class="row">
+  
+
+  <div class="col-md-6">
+    <label for="" class="col-md-6">La date achat:</label>
+    <label for="" class="col-md-6">{{purchase.datePurchase}}</label>
+  </div>
+  <div class="col-md-6">
+    <label for="" class="col-md-6">La ville:</label>
+    <label for="" class="col-md-6">{{purchase.city}}</label>
+  </div>
+  <div class="col-md-6">
+    <label for="" class="col-md-6">Prix d'achat:</label>
+    <label for="" class="col-md-6 price">{{purchase.price}}DH</label>
+  </div>
+  <div class="col-md-6">
+    <label for="" class="col-md-6">Frais de transport:</label>
+    <label for="" class="col-md-6 price">{{purchase.transport}}DH</label>
+  </div>
+  <div class="col-md-6">
+    <label for="" class="col-md-6">Nombre des produits:</label>
+    <label for="" class="col-md-6">{{count_products}}</label>
+  </div>
+  <div class="col-md-6">
+    <label for="" class="col-md-6">Nombre des vendeurs:</label>
+    <label for="" class="col-md-6">{{purchase.sellers.length}}</label>
+  </div>
+  
+</div>
+
+</p-fieldset>
+<p-fieldset legend="Les produits" class="mt-2">
+
 
                 <p-accordion class="mr-1 ml-1"> 
                     <p-accordionTab [header]="seller.name +' - '+ seller.city" class="mb-2" *ngFor="let seller of purchase.sellers ">
-                       <app-view-products [seller]="seller"></app-view-products>
+                       <app-view-products [seller]="seller" (count)="setCount($event)"></app-view-products>
                     </p-accordionTab>
                
                 </p-accordion>
+</p-fieldset>
             </div>    
         </div>    
        

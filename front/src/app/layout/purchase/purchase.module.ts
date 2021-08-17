@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FieldsetModule} from 'primeng/fieldset';
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { PurchaseComponent } from './purchase.component';
 import { ListComponent } from './list/list.component';
@@ -31,7 +31,7 @@ import { ViewProductsComponent } from './view-products/view-products.component';
     ConfirmDialogModule,
     AccordionModule,
     FormsModule,
-    
+    FieldsetModule,
     DialogModule
   ],
   providers:[ConfirmationService]
