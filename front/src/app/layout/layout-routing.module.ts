@@ -20,7 +20,8 @@ const routes: Routes = [{ path: '', component: LayoutComponent ,children:[
 {path: 'categories', component: CategoriesComponent},
 {path: 'sellers', component: SellerComponent},
 {path: 'notifications', component: NotificationsComponent},
-{ path: 'purchase', loadChildren: () => import('./purchase/purchase.module').then(m => m.PurchaseModule) }
+{ path: 'purchase', loadChildren: () => import('./purchase/purchase.module').then(m => m.PurchaseModule) },
+{ path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
 ]},
   ];
 
