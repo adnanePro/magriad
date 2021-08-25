@@ -40,4 +40,15 @@ class ProductController extends Controller
             return response($res, 500);
         }
     }
+    public function getProductInStock(){
+        try {
+            $products = Product::inStock()->with('category','purchase','seller')->get();
+            
+            return response($products, 200);
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $res['status'] = false;
+            $res['message'] = $ex->getMessage();
+            return response($res, 500);
+        }
+    }
 }

@@ -1,0 +1,20 @@
+<div class="form-group">
+    <label for="exampleInputEmail1">Produit :</label>
+    <select  class="form-control rounded-0" name="sell" [(ngModel)]="saleProduct.product_id">
+      <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+    </select>
+    <label for="exampleInputEmail1">La Date d'achat :</label>
+    <input type="date" class="form-control rounded-0" 
+     [(ngModel)]="saleProduct.dateSale" name="name">
+     <label for="exampleInputEmail1">Quantité :</label>
+     <input type="number" class="form-control rounded-0" 
+      [(ngModel)]="saleProduct.qte" name="name" [max]="product.qte">
+      <label for="exampleInputEmail1">Prix :</label>
+    <input type="text" class="form-control rounded-0" 
+     [(ngModel)]="saleProduct.price" name="name">
+     <label for="exampleInputEmail1">Observation :</label>
+    <textarea rows="5" [(ngModel)]="saleProduct.observation" class="form-control rounded-0"></textarea>
+
+  </div>
+  <button type="button" class="btn btn-lightning rounded-0 mb-2 mr-2" (click)="sale()">Valider</button>
+  <button type="button " class="btn btn-outline-lightning rounded-0 mb-2">Annuler</button>

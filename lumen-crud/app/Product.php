@@ -20,6 +20,9 @@ class Product extends BaseModel
     public function purchase(){
         return $this->belongsTo(Purchase::class);
     }
+    public function seller(){
+        return $this->belongsTo(Seller::class);
+    }
     public static function getAll()
     {
       return self::with('category')->get();
@@ -31,6 +34,9 @@ class Product extends BaseModel
      public function getChargesAttribute(){
 
         return  round($this->purchase->charges*$this->percentage/100,2);
+     }
+     public function scopeInStock($query){
+         return $query->where('qte','!=',0);
      }
 
 }

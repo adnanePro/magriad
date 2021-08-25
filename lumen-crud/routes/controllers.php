@@ -8,6 +8,7 @@ $controllers = [
   ['name' =>'seller','except'=>[]],
   ['name' =>'purchase','except'=>[]],
   ['name' =>'product','except'=>[]],
+  ['name' =>'sale','except'=>[]],
 ];
 
 function crudRoutes($c)

@@ -17,4 +17,11 @@ export class ProductService extends CrudService {
       return products.map(product=>{ return new Product().make(product) })
     }))
   }
+  // get-product-in-stock
+  public getProductsInStock():Observable<Product[]>{
+    const url =this.constractPath(this.controller,'get-product-in-stock');
+   return this.http.get<Product[]>(url).pipe(map(products=>{
+     return products.map(product=>{ return new Product().make(product) })
+   }))
+ }
 }

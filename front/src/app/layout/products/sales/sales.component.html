@@ -1,6 +1,6 @@
 <div>
 
-    <h4 class="text-muted mb-4">Les produits </h4>
+    <h4 class="text-muted mb-4">Les Ventes </h4>
   
     <div class="row mb-4">
   
@@ -13,28 +13,24 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Le nom</th>
-                    <th scope="col">Catégorie</th>
+                    <th scope="col">La date vente</th>
+                    <th scope="col">Nom de Produit</th>
+                    <th scope="col">Observation</th>
                     <th scope="col">La quantité</th>
-                    <th scope="col">La date d'achat</th>
-                    <th scope="col">Vendeur</th>
-                    <th scope="col">Prix d'achat</th>
-                    <th scope="col">Les charges</th>
+                    <th scope="col">Prix unitaire</th>
                     <th scope="col">Total</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let product of products;let i=index">
+                  <tr *ngFor="let sale of sales;let i=index">
                     <th scope="row">{{i+1}}</th>
-                    <td>{{product.name}}</td>
-                    <td>{{product.category.name}}</td>
-                    <td>{{product.qte}}</td>
-                    <td>{{product.purchase.datePurchase}}</td>
-                    <td>{{product.seller.name}}</td>
-                    <td  class="price">{{product.purshasePrice}}DH</td>
-                    <td class="price-danger">{{product.charges}}DH</td>
-                    <td><strong>{{product.getTotal(true)}}DH </strong></td>
+                    <td>{{sale.dateSale}}</td>
+                    <td>{{sale.product.name}}</td>
+                    <td>{{sale.observation}}</td>
+                    <td>{{sale.qte}}</td>
+                    <td><strong>{{sale.price}}</strong></td>
+                    <td class="price"><strong>{{sale.getTotal()}}DH </strong></td>
  
                   
                     <td>
@@ -57,7 +53,7 @@
 
   </div>
   <p-dialog [header]="'Vente'" [(visible)]="display" [style]="{width: '50vw'}">
-    <app-new-sele [product]="productSelected"></app-new-sele>
+    <app-new-sele></app-new-sele>
 </p-dialog>
 
 <p-confirmDialog #cd header="Confirmation " icon="pi pi-exclamation-triangle ">

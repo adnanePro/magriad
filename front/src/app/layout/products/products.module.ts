@@ -5,17 +5,23 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { NewSeleComponent } from './new-sele/new-sele.component';
+import { FormsModule } from '@angular/forms';
+import { SalesComponent } from './sales/sales.component';
 
 
 @NgModule({
   declarations: [
-    ProductsComponent
+    ProductsComponent,
+    NewSeleComponent,
+    SalesComponent
   ],
   imports: [
     CommonModule,
     ConfirmDialogModule,
     ProductsRoutingModule,
-    DialogModule
+    DialogModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }
