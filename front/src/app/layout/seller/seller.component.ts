@@ -13,6 +13,7 @@ export class SellerComponent implements OnInit {
   seller:Seller = new Seller();
   buttonLabel:string;
   display=false;
+  loading=true;
   constructor(private sellerService:SellerService,private confirmationService: ConfirmationService) {
     this.getCategories();
    }
@@ -34,6 +35,7 @@ export class SellerComponent implements OnInit {
   private getCategories(){
     this.sellerService.getAll().subscribe((data:Seller[])=>{
       this.selleries = data;
+      this.loading = false;
     })
   }
   edit(e){

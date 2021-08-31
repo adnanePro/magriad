@@ -8,7 +8,7 @@ class Category extends BaseModel
 {
     public $table = 'category';
 
-    protected $appends = ['value','lastPurchase'];
+    protected $appends = ['value','lastPurchase','lastSale','qte'];
 
 
   public static function getAll()
@@ -20,12 +20,34 @@ class Category extends BaseModel
         return $this->products->sum('purshasePrice');
 
     }
+    public function getQteAttribute(){
+        return $this->products->sum('qte');
+
+    }
+    public function getLastSaleAttribute(){
+        $data = Sale::join('product','product.id','=','sale.product_id')
+                    ->join('category','category.id','=','product.category_id')
+                    ->where('category.id',$this->id)
+                    ->latest('sale.dateSale')
+                    ->first();
+        if($data){
+            return $data->dateSale;
+        }else{
+            return false;
+        }
+
+    }
     public function getLastPurchaseAttribute(){
-    return Purchase::join('product','product.purchase_id','=','purchase.id')
+    $data = Purchase::join('product','product.purchase_id','=','purchase.id')
                     ->join('category','category.id','=','product.category_id')
                     ->where('category.id',$this->id)
                     ->latest('purchase.datePurchase')
-                    ->first()->datePurchase;
+                    ->first();
+                    if($data){
+                        return $data->datePurchase;
+                    }else{
+                        return false;
+                    }
 
     }
     public function products(){

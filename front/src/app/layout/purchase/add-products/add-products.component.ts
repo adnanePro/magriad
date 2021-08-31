@@ -17,6 +17,8 @@ export class AddProductsComponent implements OnInit {
   @Input() purchaseId;
   @Input() sallerId;
   buttonLabel:string;
+  loading=true;
+
   display=false;
   constructor(private productService:ProductService,private confirmationService: ConfirmationService,private categoryService:CategoryService) {
     this.getCategories();
@@ -28,6 +30,7 @@ export class AddProductsComponent implements OnInit {
   private getCategories(){
     this.categoryService.getAll().subscribe((data:Category[])=>{
       this.categories = data;
+      this.loading=false;
     })
   }
 

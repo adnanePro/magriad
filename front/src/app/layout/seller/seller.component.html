@@ -1,20 +1,31 @@
 <div>
 
     <h4 class="text-muted mb-4">Les veunders </h4>
-    <div class="text-right">
-      <button pButton type="button" [label]="'Nouveau veunder '" class="p-button-sm mb-1" (click)="openDialog()" ></button>
-      </div>
+   
     <div class="row mb-4">
   
       <div class="col-md-12">
         <div class="card border-0 rounded-0">
        
           <div class="card-body">
+            <div class="text-right">
+              <button pButton type="button" [label]="'Nouveau veunder '" class="p-button-sm mb-1" (click)="openDialog()" ></button>
+              </div>
             <div class="table-responsive-md">
-              <table class="table table-hover">
-                <thead>
+              <p-table #dt [value]="selleries" class="table table-hover"  [globalFilterFields]="['name','phone','cin','city','lastPurchase']"
+              [rows]="10" [showCurrentPageReport]="true"  [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading">
+                <ng-template pTemplate="caption">
+                  <div class="table-header ">
+                      List Des veunders
+                      <span class="p-input-icon-left">
+                         
+                          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"  />
+                      </span>
+                  </div>
+              </ng-template>
+                <ng-template pTemplate="header">
                   <tr>
-                    <th scope="col">#</th>
+                  
                     <th scope="col">Nom</th>
                     <th scope="col">Téléphone</th>
                     <th scope="col">CIN</th>
@@ -22,16 +33,16 @@
                     <th scope="col">Dernière Achat</th>
                     <th scope="col">Action</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let seller of selleries;let i = index">
-                    <th scope="row">{{i+1}}</th>
+                </ng-template>
+                <ng-template pTemplate="body" let-seller>
+                  <tr >
+                    
                     <td>{{seller.name}}</td>
                     <td>{{seller.phone}}</td>
                     <td >{{seller.cin}}</td>
                     
                     <td>{{seller.city}}</td>                
-                    <td>2021/08/08</td>       
+                    <td>{{seller.lastPurchase}}</td>       
                     <td>
                       <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="edit(seller)">
                         <i class="far fa-edit"></i>
@@ -44,8 +55,8 @@
          
                   </tr>
                   
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
   
           </div>

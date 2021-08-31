@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
   purchase:Purchase = new Purchase();
   buttonLabel:string;
   display=false;
+  loading=true;
   constructor(private purchaseService:PurchaseService,private confirmationService: ConfirmationService,private router:Router) {
     this.getPurchases();
    }
@@ -39,6 +40,8 @@ export class ListComponent implements OnInit {
       this.purchases = data.map(purchase=>{
         return new Purchase().make(purchase);
       });
+      this.loading=false;
+      
     })
   }
   edit(e){

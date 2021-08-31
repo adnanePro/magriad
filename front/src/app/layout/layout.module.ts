@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SellerComponent } from './seller/seller.component';
 import { PurchaseRoutingModule } from './purchase/purchase-routing.module';
 
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { PurchaseRoutingModule } from './purchase/purchase-routing.module';
     ConfirmDialogModule,
     HttpClientModule,
     FormsModule,
-    
+    TableModule,
     DialogModule
   ],
   providers:[ConfirmationService]

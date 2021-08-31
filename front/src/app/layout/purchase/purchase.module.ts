@@ -15,6 +15,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
 import { ViewPurchaseComponent } from './view-purchase/view-purchase.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.co
     AccordionModule,
     FormsModule,
     FieldsetModule,
+    TableModule,
     DialogModule
   ],
   providers:[ConfirmationService]

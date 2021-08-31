@@ -14,7 +14,7 @@ class Purchase extends BaseModel
     ];
     public static function getAll()
     {
-      return self::with('products')->get();
+      return self::with('products')->orderBy('datePurchase','DESC')->get();
     }
 
     public function products(){

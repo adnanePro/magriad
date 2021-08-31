@@ -11,10 +11,21 @@
                 </div>
           <div class="card-body">
             <div class="table-responsive-md">
-              <table class="table table-hover">
-                <thead>
+              <p-table #dt [value]="purchases" class="table table-hover"  [globalFilterFields]="['datePurchase','price','charges','city','status']"
+              [rows]="10" [showCurrentPageReport]="true"  [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading">
+                <ng-template pTemplate="caption">
+                  <div class="table-header ">
+                      Recherche
+                      <span class="p-input-icon-left">
+                         
+                          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"  />
+                      </span>
+                  </div>
+              </ng-template>
+                <ng-template pTemplate="header">
+          
                   <tr>
-                    <th scope="col">#</th>
+                   
                     <th scope="col">La date d'achat</th>
                     <th scope="col">La ville</th>
                     <th scope="col">Prix d'achat</th>
@@ -23,10 +34,10 @@
                     <th scope="col">Statut</th>
                     <th scope="col">Actions</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let purchase of purchases;let i=index">
-                    <th scope="row">1</th>
+                </ng-template>
+                <ng-template pTemplate="body" let-purchase>
+                  <tr >
+                    
                     <td>{{purchase.datePurchase}}</td>
                     <td>{{purchase.city}}</td>
                     <td  class="price">{{purchase.price}}DH</td>
@@ -50,8 +61,8 @@
                       </a>
                     </td>
                   </tr>
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
   
           </div>

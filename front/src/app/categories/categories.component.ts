@@ -12,6 +12,7 @@ export class CategoriesComponent implements OnInit {
   categories:Category[];
   category:Category = new Category();
   buttonLabel:string;
+  loading=true;
   display=false;
   constructor(private categoryService:CategoryService,private confirmationService: ConfirmationService) {
     this.getCategories();
@@ -34,6 +35,7 @@ export class CategoriesComponent implements OnInit {
   private getCategories(){
     this.categoryService.getAll().subscribe((data:Category[])=>{
       this.categories = data;
+      this.loading=false;
     })
   }
   edit(e){

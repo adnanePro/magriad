@@ -2,10 +2,21 @@
     <button pButton type="button" [label]="'Nouveau produit '" class="p-button-sm mb-1" (click)="display= true" ></button>
     </div>
     <div class="table-responsive-md">
-        <table class="table table-hover">
-          <thead>
+      <p-table #dt [value]="products" class="table table-hover"  [globalFilterFields]="['name','category.name','qte','purshasePrice']"
+      [rows]="10" [showCurrentPageReport]="true"  [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="table-header ">
+              Recherche
+              <span class="p-input-icon-left ml-2">
+                 
+                  <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"  />
+              </span>
+          </div>
+      </ng-template>
+        <ng-template pTemplate="header">
+  
             <tr>
-              <th scope="col">#</th>
+            
               <th scope="col">Nom</th>
               <th scope="col">Catégorie</th>
               <th scope="col">Quantité</th>
@@ -13,10 +24,10 @@
               <th scope="col">Total</th>
               <th scope="col">Actions</th>
             </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of products;let i=index">
-              <th scope="row">{{i+1}}</th>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr >
+              
               <td>{{product.name}}</td>
               <td>{{product.category.name}}</td>
               <td>{{product.qte}}</td>
@@ -34,8 +45,8 @@
               
             </tr>
        
-          </tbody>
-        </table>
+          </ng-template>
+        </p-table>
       </div>
       <p-dialog [header]="buttonLabel" [(visible)]="display" [style]="{width: '50vw'}">
         <form>
