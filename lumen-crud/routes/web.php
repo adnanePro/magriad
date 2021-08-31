@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
+$router->get('/test','TestController@getByPurchase');
 
 Route::group(['prefix' => 'api'], function () use ($controllers) {
 
     Route::group(['prefix' => 'user'], function () {
         Route::post("authentification", "UserController@authentification");
+    });
+    Route::group(['prefix' => 'maintenance'], function () {
+        Route::post("get-by-purchase", "MaintenanceController@getByPurchase");
     });
     Route::group(['prefix' => 'product'], function () {
         Route::post("get-by-seller-and-purchase", "ProductController@getByPurchaseAndSeller");

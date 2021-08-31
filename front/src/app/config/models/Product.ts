@@ -1,5 +1,6 @@
 import { BaseModel } from "./BaseModel";
 import { Category } from "./Category";
+import { Maintenance } from "./Maintenance";
 
 export class Product extends BaseModel {
    name:string;
@@ -11,7 +12,7 @@ export class Product extends BaseModel {
    product_id?:any;
    category:Category
    charges:any;
-  
+   maitenances:Maintenance;
    percentage:any;
 
    getTotal(charge=false){

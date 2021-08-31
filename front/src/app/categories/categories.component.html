@@ -27,8 +27,8 @@
                   <tr *ngFor="let category of categories;let i = index">
                     <th scope="row">{{i+1}}</th>
                     <td>{{category.name}}</td>
-                    <td>6</td>
-                    <td class="price">490 DH</td>
+                    <td>{{category.products_count}}</td>
+                    <td class="price">{{category.value}} DH</td>
                     
                     <td>2021/07/02</td>                
                     <td>2021/08/08</td>       

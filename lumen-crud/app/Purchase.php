@@ -12,9 +12,13 @@ class Purchase extends BaseModel
     protected $fillable = [
         'datePurchase','transport','fillUp','city',"strip",
     ];
+    public static function getAll()
+    {
+      return self::with('products')->get();
+    }
 
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->with('maitenances');
     }
     public static function getById($id)
     {
@@ -29,6 +33,7 @@ class Purchase extends BaseModel
         return $this->products()->sum('purshasePrice');
      }
      public function getChargesAttribute(){
-        return $this->fillUp + $this->transport + $this->strip; 
+        return $this->fillUp + $this->transport + $this->strip;
+
      }
 }

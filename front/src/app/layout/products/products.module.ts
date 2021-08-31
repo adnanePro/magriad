@@ -8,13 +8,15 @@ import { DialogModule } from 'primeng/dialog';
 import { NewSeleComponent } from './new-sele/new-sele.component';
 import { FormsModule } from '@angular/forms';
 import { SalesComponent } from './sales/sales.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     NewSeleComponent,
-    SalesComponent
+    SalesComponent,
+    MaintenanceComponent
   ],
   imports: [
     CommonModule,

@@ -17,6 +17,10 @@ class Product extends BaseModel
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function maitenances(){
+        return $this->hasMany(Maintenance::class);
+
+    }
     public function purchase(){
         return $this->belongsTo(Purchase::class);
     }
@@ -33,7 +37,7 @@ class Product extends BaseModel
      }
      public function getChargesAttribute(){
 
-        return  round($this->purchase->charges*$this->percentage/100,2);
+        return  round(($this->purchase->charges*$this->percentage/100)+ $this->maitenances->sum('price'),2);
      }
      public function scopeInStock($query){
          return $query->where('qte','!=',0);

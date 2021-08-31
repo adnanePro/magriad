@@ -1,4 +1,5 @@
 import { BaseModel } from "./BaseModel";
+import { Product } from "./Product";
 import { Seller } from "./Seller";
 
 export class Purchase extends BaseModel {
@@ -11,6 +12,7 @@ export class Purchase extends BaseModel {
     status:boolean;
     charges:any;
     sellers:Seller[];
+    products:Product[];
     percentage:any;
 
     getTotal(){
@@ -19,4 +21,5 @@ export class Purchase extends BaseModel {
     getStatus(){
       return  this.status ? "Términé" :  "En cours";
     }
+
 }

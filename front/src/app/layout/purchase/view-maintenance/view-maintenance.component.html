@@ -1,0 +1,32 @@
+<div class="table-responsive-md">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">La date maintenance</th>
+          <th scope="col">Nom de Produit</th>
+          <th scope="col">Déscription</th>
+          <th scope="col">Coût</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let maintenance of maintenances;let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{maintenance.dateMaintenance}}</td>
+          <td>{{maintenance.product.name}}</td>
+          <td>{{maintenance.description}}</td>
+          <td>{{maintenance.price}}DH</td>
+        
+
+        
+          <td>
+            <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="sale(product)"
+             >
+             <i class="fas fa-shopping-cart"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

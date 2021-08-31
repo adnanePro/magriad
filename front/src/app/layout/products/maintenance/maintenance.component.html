@@ -1,0 +1,92 @@
+<div>
+
+    <h4 class="text-muted mb-4">Les maintenances </h4>
+  
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="text-right">
+                <button pButton type="button" (click)="display=true" [label]="'Nouvelle maintence'" class="p-button-sm mb-1"  ></button>
+                </div>
+            <div class="card border-0 rounded-0">
+         
+          <div class="card-body">
+            <div class="table-responsive-md">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">La date maintenance</th>
+                    <th scope="col">Nom de Produit</th>
+                    <th scope="col">Déscription</th>
+                    <th scope="col">Coût</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let maintenance of maintenances;let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{maintenance.dateMaintenance}}</td>
+                    <td>{{maintenance.product.name}}</td>
+                    <td>{{maintenance.description}}</td>
+                    <td>{{maintenance.price}}DH</td>
+                  
+ 
+                  
+                    <td>
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="sale(product)"
+                       >
+                       <i class="fas fa-shopping-cart"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+
+  </div>
+  <p-dialog [header]="'Nouvelle maintenance'" [(visible)]="display" [style]="{width: '50vw'}">
+    <form>
+     
+        <div class="form-group">
+          <label for="exampleInputEmail1">La date :</label>
+          <input type="date" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp"
+           [(ngModel)]="maintenance.dateMaintenance" name="name">
+           <label>Produit</label>
+           <select  class="form-control rounded-0" name="sell" [(ngModel)]="maintenance.product_id">
+            <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+          </select>
+          <label for="">Description</label>
+          <textarea class="form-control rounded-0" name="Description" rows="5"[(ngModel)]="maintenance.description" ></textarea>
+          <label>Coût</label>
+          <input type="number" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp"
+          [(ngModel)]="maintenance.price" name="name">
+
+        </div>
+        <button type="button" class="btn btn-lightning rounded-0 mb-2 mr-2" (click)="updateOrCreate()">Valider</button>
+        <button type="button " class="btn btn-outline-lightning rounded-0 mb-2">Annuler</button>
+      </form>
+</p-dialog>
+
+<p-confirmDialog #cd header="Confirmation " icon="pi pi-exclamation-triangle ">
+    <p-footer>
+      <p-button
+        type="button "
+        icon="pi pi-times "
+        label="Non "
+        (click)="cd.reject()"
+      ></p-button>
+      <p-button
+        type="button "
+        icon="pi pi-check "
+        label="Oui "
+        (click)="cd.accept()"
+      ></p-button>
+    </p-footer>
+  </p-confirmDialog>

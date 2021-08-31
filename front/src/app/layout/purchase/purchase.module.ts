@@ -14,6 +14,7 @@ import {AccordionModule} from 'primeng/accordion';
 import { AddProductsComponent } from './add-products/add-products.component';
 import { ViewPurchaseComponent } from './view-purchase/view-purchase.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
+import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ViewProductsComponent } from './view-products/view-products.component';
     NewPurchaseComponent,
     AddProductsComponent,
     ViewPurchaseComponent,
-    ViewProductsComponent
+    ViewProductsComponent,
+    ViewMaintenanceComponent
   ],
   imports: [
     CommonModule,
