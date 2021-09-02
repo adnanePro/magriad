@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Sale } from 'src/app/config/models/Sale';
-import { Seller } from 'src/app/config/models/Seller';
 import { SaleService } from 'src/app/config/services/sale.service';
 
 @Component({
@@ -10,20 +9,22 @@ import { SaleService } from 'src/app/config/services/sale.service';
 })
 export class SalesComponent implements OnInit {
   sales:Sale[];
-  display=false;
-  loading=true
+  loading=true;
+  @Input() purchaseId;
   constructor(private saleService:SaleService) { 
+  }
+  
+  
+  ngOnInit(): void {
     this.getSales()
   }
-
-  ngOnInit(): void {
-  }
   private getSales(){
-    this.saleService.getAll().subscribe((data:Sale[])=>{
+    this.saleService.getByPurchase(this.purchaseId).subscribe((data:Sale[])=>{
       this.sales = data.map(sale=>{
         return new Sale().make(sale);
       })
       this.loading=false;
     })
   }
+
 }

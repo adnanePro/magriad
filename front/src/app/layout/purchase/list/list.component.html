@@ -45,7 +45,7 @@
                     <td>{{purchase.getTotal()}}DH</td>
  
                     <td>
-                      <span class="badge  rounded-0 p-1" [ngClass]="purchase.status ? 'badge-success':'badge-primary'">{{purchase.getStatus()}}</span>
+                      <span class="badge  rounded-0 p-1" [ngClass]="purchase.percentage===100 ? 'badge-success':'badge-primary'">{{purchase.getStatus()}}</span>
                     </td>
                     <td>
                       <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 "

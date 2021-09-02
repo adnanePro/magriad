@@ -13,13 +13,14 @@ export class Purchase extends BaseModel {
     charges:any;
     sellers:Seller[];
     products:Product[];
+    maintenance:any;
     percentage:any;
 
     getTotal(){
-        return this.charges + this.price;
+        return this.charges + this.price+this.maintenance;
     }
     getStatus(){
-      return  this.status ? "Términé" :  "En cours";
+      return  this.percentage===100 ? "Términé" :  "En cours";
     }
 
 }

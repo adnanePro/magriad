@@ -9,39 +9,51 @@
          
           <div class="card-body">
             <div class="table-responsive-md">
-              <table class="table table-hover">
-                <thead>
+              <p-table #dt [value]="sales" class="table table-hover"  [globalFilterFields]="['dateSale','qte','product.name','price']"
+              [rows]="10" [showCurrentPageReport]="true"  [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading">
+                <ng-template pTemplate="caption">
+                  <div class="table-header ">
+                      Recherche
+                      <span class="p-input-icon-left">
+                         
+                          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"  />
+                      </span>
+                  </div>
+              </ng-template>
+                <ng-template pTemplate="header">
                   <tr>
-                    <th scope="col">#</th>
+                    
                     <th scope="col">La date vente</th>
                     <th scope="col">Nom de Produit</th>
                     <th scope="col">Observation</th>
                     <th scope="col">La quantité</th>
                     <th scope="col">Prix unitaire</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Bénéfice</th>
                     <th scope="col">Actions</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let sale of sales;let i=index">
-                    <th scope="row">{{i+1}}</th>
+                </ng-template>
+                <ng-template pTemplate="body" let-sale>
+                  <tr>
+                 
                     <td>{{sale.dateSale}}</td>
                     <td>{{sale.product.name}}</td>
                     <td>{{sale.observation}}</td>
                     <td>{{sale.qte}}</td>
                     <td><strong>{{sale.price}}</strong></td>
                     <td class="price"><strong>{{sale.getTotal()}}DH </strong></td>
- 
+                    <td class="price"><strong>{{sale.benefice}}DH </strong></td>
+                    
                   
                     <td>
-                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="sale(product)"
+                      <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="sale(sale)"
                        >
                        <i class="fas fa-shopping-cart"></i>
                       </a>
                     </td>
                   </tr>
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
   
           </div>

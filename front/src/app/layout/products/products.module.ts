@@ -9,6 +9,7 @@ import { NewSeleComponent } from './new-sele/new-sele.component';
 import { FormsModule } from '@angular/forms';
 import { SalesComponent } from './sales/sales.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
     ConfirmDialogModule,
     ProductsRoutingModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ]
 })
 export class ProductsModule { }

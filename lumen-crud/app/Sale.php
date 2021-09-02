@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Sale extends BaseModel
 {
     public $table = 'sale';
+    protected $appends = ['benefice'];
+    
+    
 
     public function product(){
         return $this->belongsTo(Product::class);
@@ -15,6 +18,10 @@ class Sale extends BaseModel
     {
       return self::with('product')->get();
     }
+    public function getBeneficeAttribute(){
+        
+        return round($this->qte *($this->price-Product::where('id',$this->product_id)->first()->unitPrice),2); 
+     }
 
     protected $fillable = [
         'dateSale','product_id','price','qte','observation'

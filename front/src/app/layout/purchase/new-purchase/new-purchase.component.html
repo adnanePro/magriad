@@ -35,7 +35,7 @@
         <div class="form-group">
           <label for="exampleInputEmail1">Nom :</label>
           <select  class="form-control rounded-0" name="sell" [(ngModel)]="selleSelected">
-            <option *ngFor="let seller of selles" [ngValue]="seller">{{seller.name}}-{{seller.city}}</option>
+            <option *ngFor="let seller of selles" [disabled]="sellerChossed(seller)" [ngValue]="seller">{{seller.name}}-{{seller.city}}</option>
           </select>
      
 

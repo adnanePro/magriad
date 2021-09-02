@@ -25,7 +25,7 @@ export class NewPurchaseComponent implements OnInit {
     forkJoin(this.purchaseService.getById(params.id),this.sellerService.getAll()).subscribe(data=>{
       this.purchase = new Purchase().make(data[0]);
       this.selles = data[1] as Seller[];
-      this.selleschossed = this.purchase.sellers;
+      this.selleschossed = this.purchase.sellers as Seller[];
     })
   })              
 
@@ -40,6 +40,13 @@ export class NewPurchaseComponent implements OnInit {
    this.displaySeller = false;
    this.selleSelected = new Seller();
     
+  }
+  sellerChossed(seller:Seller){
+    const sel = this.selleschossed.filter(s=>{
+      return s.id === seller.id;
+    })[0];
+    return sel ? true :false;
+   
   }
 
 }

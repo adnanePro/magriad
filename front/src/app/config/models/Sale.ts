@@ -11,6 +11,7 @@ export class Sale extends BaseModel {
    product_id?:any;
    category:Category
    observation:any;
+   benefice:any;
   
    percentage:any;
 

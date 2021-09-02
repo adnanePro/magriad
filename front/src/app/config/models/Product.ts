@@ -12,12 +12,16 @@ export class Product extends BaseModel {
    product_id?:any;
    category:Category
    charges:any;
+   unitPrice:any;
    maitenances:Maintenance;
    percentage:any;
+   quantityIniale:any;
+   maintenanceCost:any;
 
    getTotal(charge=false){
        const val = charge ? this.charges : 0;
-       return this.qte*this.purshasePrice + val;
+       const maitenances = charge ? this.maintenanceCost : 0;
+       return this.quantityIniale| this.qte *this.purshasePrice + val + maitenances;
    }
 
 }

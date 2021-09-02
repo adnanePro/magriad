@@ -10,10 +10,12 @@ import { ProductService } from 'src/app/config/services/product.service';
 export class ProductsComponent implements OnInit {
   products:Product[]=[];
   display=false;
+  loading=true;
   productSelected:Product=new Product();
   constructor(private productService:ProductService) {
     this.productService.getProductsInStock().subscribe(data=>{
       this.products = data;
+      this.loading = false;
     })
    }
 

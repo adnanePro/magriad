@@ -26,6 +26,10 @@ Route::group(['prefix' => 'api'], function () use ($controllers) {
     Route::group(['prefix' => 'maintenance'], function () {
         Route::post("get-by-purchase", "MaintenanceController@getByPurchase");
     });
+    Route::group(['prefix' => 'sale'], function () {
+        Route::post("get-by-purchase", "SaleController@getByPurchase");
+    });
+
     Route::group(['prefix' => 'product'], function () {
         Route::post("get-by-seller-and-purchase", "ProductController@getByPurchaseAndSeller");
         Route::get("get-product-in-stock", "ProductController@getProductInStock");

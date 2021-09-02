@@ -12,11 +12,13 @@ export class ViewProductsComponent implements OnInit {
   @Input() seller:Seller;
   products:Product[];
  @Output() count:EventEmitter<number> =new EventEmitter(); 
+ loading=true;
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     this.productService.getByPurchaseAndSeller(this.seller.id,this.seller.pivot.purchase_id).subscribe(products=>{
       this.products = products;
+      this.loading=false;
       this.count.emit(this.products.length);
     })
   }

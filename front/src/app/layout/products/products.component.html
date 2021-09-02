@@ -9,10 +9,21 @@
          
           <div class="card-body">
             <div class="table-responsive-md">
-              <table class="table table-hover">
-                <thead>
+              <p-table #dt [value]="products" class="table table-hover"  
+              [globalFilterFields]="['category.name','name','product.name','qte','purchase.datePurchase','seller.name','purshasePrice','unitPrice','charges']"
+              [rows]="10" [showCurrentPageReport]="true"  [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading">
+                <ng-template pTemplate="caption">
+                  <div class="table-header ">
+                      Recherche
+                      <span class="p-input-icon-left">
+                         
+                          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"  />
+                      </span>
+                  </div>
+              </ng-template>
+                <ng-template pTemplate="header">
                   <tr>
-                    <th scope="col">#</th>
+                    
                     <th scope="col">Le nom</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">La quantité</th>
@@ -20,13 +31,14 @@
                     <th scope="col">Vendeur</th>
                     <th scope="col">Prix d'achat</th>
                     <th scope="col">Les charges</th>
+                    <th scope="col">Prix Unitaire</th>
                     <th scope="col">Total</th>
                     <th scope="col">Actions</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of products;let i=index">
-                    <th scope="row">{{i+1}}</th>
+                </ng-template>
+                <ng-template pTemplate="body" let-product>
+                  <tr >
+                    
                     <td>{{product.name}}</td>
                     <td>{{product.category.name}}</td>
                     <td>{{product.qte}}</td>
@@ -34,6 +46,7 @@
                     <td>{{product.seller.name}}</td>
                     <td  class="price">{{product.purshasePrice}}DH</td>
                     <td class="price-danger">{{product.charges}}DH</td>
+                    <td class="price">{{product.unitPrice}}DH</td>
                     <td><strong>{{product.getTotal(true)}}DH </strong></td>
  
                   
@@ -44,8 +57,8 @@
                       </a>
                     </td>
                   </tr>
-                </tbody>
-              </table>
+                </ng-template>
+              </p-table>
             </div>
   
           </div>

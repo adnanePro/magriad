@@ -16,6 +16,8 @@ import { ViewPurchaseComponent } from './view-purchase/view-purchase.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ViewMaintenanceComponent } from './view-maintenance/view-maintenance.component';
 import { TableModule } from 'primeng/table';
+import {ProgressBarModule} from 'primeng/progressbar';
+import { SalesComponent } from './sales/sales.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { TableModule } from 'primeng/table';
     AddProductsComponent,
     ViewPurchaseComponent,
     ViewProductsComponent,
-    ViewMaintenanceComponent
+    ViewMaintenanceComponent,
+    SalesComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     FieldsetModule,
     TableModule,
+    ProgressBarModule,
     DialogModule
   ],
   providers:[ConfirmationService]

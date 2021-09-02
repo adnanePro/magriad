@@ -14,6 +14,7 @@ export class MaintenanceComponent implements OnInit {
   maintenances:Maintenance[]=[];
   products:Product[]=[];
   maintenance:Maintenance=new Maintenance();
+  loading=true;
   constructor(private maintenanceService:MaintenanceService,private productService:ProductService) { 
     this.getMaintenances();
     this.getProducts();
@@ -30,6 +31,7 @@ export class MaintenanceComponent implements OnInit {
     this.maintenanceService.getAll().subscribe(data=>{
       this.maintenances = data as Maintenance[]
       this.display=false;
+      this.loading=false;
     })
 
   }

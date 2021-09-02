@@ -10,38 +10,85 @@
             <div class="row">
       <div class="col-md-12">
 <br>
+<div class="row">
+<div class="col-md-6">
 <p-fieldset legend="Informations" class="mb-2">
   <div class="row">
   
 
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="" class="col-md-6">La date achat:</label>
     <label for="" class="col-md-6">{{purchase.datePurchase}}</label>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="" class="col-md-6">La ville:</label>
     <label for="" class="col-md-6">{{purchase.city}}</label>
   </div>
-  <div class="col-md-6">
-    <label for="" class="col-md-6">Prix d'achat:</label>
-    <label for="" class="col-md-6 price">{{purchase.price}}DH</label>
-  </div>
-  <div class="col-md-6">
-    <label for="" class="col-md-6">Frais de transport:</label>
-    <label for="" class="col-md-6 price">{{purchase.transport}}DH</label>
-  </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="" class="col-md-6">Nombre des produits:</label>
     <label for="" class="col-md-6">{{count_products}}</label>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="" class="col-md-6">Nombre des vendeurs:</label>
     <label for="" class="col-md-6">{{purchase.sellers.length}}</label>
+  </div>
+  <div class="col-md-12">
+    <label for="" class="col-md-6">Statut:</label>
+    <label for="" class="col-md-6">
+      <span class="badge  rounded-0 p-1 col-md-2 " [ngClass]="purchase.status ? 'badge-success':'badge-primary'">{{purchase.getStatus()}}</span>
+      
+    </label>
+  </div>
+  <div class="col-md-12">
+    <label for="" class="col-md-6">Etat:</label>
+    <label for="" class="col-md-6">
+      <p-progressBar [value]="purchase.percentage"></p-progressBar>
+    </label>
   </div>
   
 </div>
 
 </p-fieldset>
+</div>
+<div class="col-md-6">
+  <p-fieldset legend="Les Frais" class="mb-2">
+    <div class="row">
+    
+  
+    
+    <div class="col-md-12">
+      <label for="" class="col-md-6">Prix d'achat:</label>
+      <label for="" class="col-md-6 price">{{purchase.price}}DH</label>
+    </div>
+    <div class="col-md-12">
+      <label for="" class="col-md-6">Frais de transport:</label>
+      <label for="" class="col-md-6 price">{{purchase.transport}}DH</label>
+    </div>
+    <div class="col-md-12">
+      <label for="" class="col-md-6">Remplir Les Produit:</label>
+      <label for="" class="col-md-6 price">{{purchase.fillUp}}DH</label>
+    </div>
+    <div class="col-md-12">
+      <label for="" class="col-md-6">Vider Les Produit:</label>
+      <label for="" class="col-md-6 price">{{purchase.strip}}DH</label>
+    </div>
+    <div class="col-md-12">
+      <label for="" class="col-md-6">Maintenance:</label>
+      <label for="" class="col-md-6 price-danger">{{purchase.maintenance}}DH</label>
+    </div>
+    <div class="col-md-12">
+     <strong> <label for="" class="col-md-6">Total:</label>
+      <label for="" class="col-md-6 price text-center">{{purchase.getTotal()}}DH</label></strong>
+    </div>
+    
+    
+  </div>
+  
+  </p-fieldset>
+  </div>
+</div>
+<div class="row mt-2">
+<div class="col-md-12">
 <p-fieldset legend="Les produits" class="mt-2">
 
 
@@ -52,6 +99,17 @@
                
                 </p-accordion>
 </p-fieldset>
+</div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-12">
+<p-fieldset legend="Les ventes" class="mt-2">
+  <app-sales [purchaseId]="purchase.id"></app-sales>
+</p-fieldset>
+            </div>    
+        </div>
+<div class="row mt-2">
+  <div class="col-md-12">
 <p-fieldset legend="Les maintenances" class="mt-2">
   <app-view-maintenance [purchaseId]="purchase.id"></app-view-maintenance>
 </p-fieldset>
@@ -63,4 +121,6 @@
     </div>
     
   </div>
- 
+</div>
+    
+</div>
