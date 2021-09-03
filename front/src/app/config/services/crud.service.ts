@@ -23,10 +23,10 @@ export class CrudService extends BaseService {
     return this.http.post(`${this.network()}`, element);
   }
   update(element: any) {
-    return this.http.put(`${this.network()}${element.id}`, element);
+    return this.http.put(`${this.network()}/${element.id}`, element);
   }
   delete(element: any) {
-    return this.http.delete(`${this.network()}${element.id}`);
+    return this.http.delete(`${this.network()}/${element.id}`);
   }
   
 }
