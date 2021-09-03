@@ -14,7 +14,7 @@ export class CrudService extends BaseService {
 
 
   getById(id) {
-    return this.http.get(`${this.network()}${id}`);
+    return this.http.get(`${this.network()}/${id}`);
   }
   getAll() {
     return this.http.get(`${this.network()}`);
