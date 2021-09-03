@@ -32,7 +32,7 @@
               <td>{{product.category.name}}</td>
               <td>{{product.qte}}</td>
               <td class="price">{{product.purshasePrice}}DH</td>
-              <td class="price">{{product.getTotal()}}DH</td>
+              <td class="price">{{product.qte*product.purshasePrice}}DH</td>
               <td>
                 <a class="btn btn-sm btn-outline-lightning rounded-0 mr-2 " (click)="edit(product)">
                   <i class="far fa-edit"></i>
