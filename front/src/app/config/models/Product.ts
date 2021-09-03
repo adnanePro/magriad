@@ -21,7 +21,8 @@ export class Product extends BaseModel {
    getTotal(charge=false){
        const val = charge ? this.charges : 0;
        const maitenances = charge ? this.maintenanceCost : 0;
-       return this.quantityIniale| this.qte *this.purshasePrice + val + maitenances;
+       const rest = val+maitenances;
+       return this.qte*this.purshasePrice+rest;
    }
 
 }

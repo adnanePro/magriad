@@ -16,7 +16,7 @@ class Sale extends BaseModel
     }
     public static function getAll()
     {
-      return self::with('product')->get();
+      return self::with('product')->orderBy('dateSale','DESC')->get();
     }
     public function getBeneficeAttribute(){
         

@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/config/models/Product';
 import { Sale } from 'src/app/config/models/Sale';
 import { ProductService } from 'src/app/config/services/product.service';
@@ -13,6 +13,7 @@ export class NewSeleComponent implements OnInit,AfterContentChecked {
   products:Product[];
   @Input() product:Product=new Product();
   saleProduct:Sale=new Sale();
+  @Output() created=new EventEmitter<any>();
   constructor(private productService:ProductService,private saleService:SaleService) {
     this.productService.getProductsInStock().subscribe(data=>{
       this.products = data;
@@ -30,7 +31,9 @@ export class NewSeleComponent implements OnInit,AfterContentChecked {
 
   sale(){
       this.saleService.create(this.saleProduct).subscribe(data=>{
-
+        console.log('send');
+        
+        this.created.emit();
       })
   }
 

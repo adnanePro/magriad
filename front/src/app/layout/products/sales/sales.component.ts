@@ -18,12 +18,16 @@ export class SalesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  private getSales(){
+  public getSales(){
+    console.log('recerved');
     this.saleService.getAll().subscribe((data:Sale[])=>{
       this.sales = data.map(sale=>{
         return new Sale().make(sale);
       })
+      
       this.loading=false;
+      this.display=false;
     })
   }
+
 }

@@ -17,7 +17,9 @@ class Category extends BaseModel
   }
 
     public function getValueAttribute(){
-        return $this->products->sum('purshasePrice');
+        return $this->products->sum(function($product){
+            return $product->qte * $product->purshasePrice;
+        });
 
     }
     public function getQteAttribute(){
