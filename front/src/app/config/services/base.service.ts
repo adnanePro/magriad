@@ -11,7 +11,7 @@ export class BaseService {
   constructor(protected http: HttpClient){}
 
  protected   network() {
-    return `${environment.network}${this.controller}/`;
+    return `${environment.network}${this.controller}`;
   }
 
   protected constractPath(...params){
