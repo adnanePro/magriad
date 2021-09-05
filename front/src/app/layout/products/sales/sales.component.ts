@@ -29,5 +29,9 @@ export class SalesComponent implements OnInit {
       this.display=false;
     })
   }
+  test(){
+    console.log('test');
+    
+  }
 
 }

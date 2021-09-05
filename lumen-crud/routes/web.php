@@ -34,6 +34,7 @@ Route::group(['prefix' => 'api'], function () use ($controllers) {
         Route::post("get-by-seller-and-purchase", "ProductController@getByPurchaseAndSeller");
         Route::get("get-product-in-stock", "ProductController@getProductInStock");
     });
+    Route::post('dashboard','DashboardController@index');
     foreach ($controllers as $controller) {
         crudRoutes($controller);
     }

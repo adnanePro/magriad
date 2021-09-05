@@ -27,13 +27,13 @@ export class NewSeleComponent implements OnInit,AfterContentChecked {
   ngOnInit(): void {
     
     
+    this.created.emit(null);
   }
 
   sale(){
       this.saleService.create(this.saleProduct).subscribe(data=>{
         console.log('send');
         
-        this.created.emit();
       })
   }
 
