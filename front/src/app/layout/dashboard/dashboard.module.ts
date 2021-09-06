@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     DashboardComponent,
     CategoriesComponent,
-    PurchasesSalesMaintancesComponent
+    PurchasesSalesMaintancesComponent,
   ],
   imports: [
     CommonModule,

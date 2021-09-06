@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
 import { Maintenance } from 'src/app/config/models/Maintenance';
 import { Product } from 'src/app/config/models/Product';
 import { MaintenanceService } from 'src/app/config/services/maintenance.service';
@@ -15,7 +16,7 @@ export class MaintenanceComponent implements OnInit {
   products:Product[]=[];
   maintenance:Maintenance=new Maintenance();
   loading=true;
-  constructor(private maintenanceService:MaintenanceService,private productService:ProductService) { 
+  constructor(private maintenanceService:MaintenanceService,private productService:ProductService,private confirmationService: ConfirmationService) { 
     this.getMaintenances();
     this.getProducts();
   }
@@ -36,8 +37,23 @@ export class MaintenanceComponent implements OnInit {
 
   }
   updateOrCreate(){
-    this.maintenanceService.create(this.maintenance).subscribe(()=>{
+    this.maintenanceService.updateOrCreate(this.maintenance).subscribe(()=>{
       this.getMaintenances()
     })
+  }
+  edit(e){
+    this.maintenance = new Maintenance().make(e);
+    this.display=true;
+  }
+  delete(maintenance: Maintenance) {
+    this.confirmationService.confirm({
+      message: 'Voulez vous vraiment supprimer cet element',
+      accept: () => {
+
+        this.maintenanceService.delete(maintenance).subscribe(()=>{
+          this.getMaintenances();
+        })
+      },
+    });
   }
 }

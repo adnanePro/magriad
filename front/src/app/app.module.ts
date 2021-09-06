@@ -19,11 +19,15 @@ import { TypographyComponent } from './pages/typography/typography.component';
 import { MapsComponent } from './pages/maps/maps.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './app.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -33,9 +37,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FormsModule
     ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

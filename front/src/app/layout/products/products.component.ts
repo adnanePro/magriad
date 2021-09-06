@@ -13,19 +13,27 @@ export class ProductsComponent implements OnInit {
   loading=true;
   productSelected:Product=new Product();
   constructor(private productService:ProductService) {
-    this.productService.getProductsInStock().subscribe(data=>{
-      this.products = data;
-      this.loading = false;
-    })
+    this.getProducts()
    }
 
   ngOnInit(): void {
     
   }
+   getProducts(){
+        this.productService.getProductsInStock().subscribe(data=>{
+      this.products = data;
+      this.loading = false;
+      this.display = false;
+    })
+  }
 
   sale(product:Product){
     this.productSelected = new Product().make(product);
     this.display = true; 
+  }
+  test(){
+    console.log('recerved');
+    
   }
 
 }

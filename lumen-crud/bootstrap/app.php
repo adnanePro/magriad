@@ -58,8 +58,8 @@ $app->singleton(
 | the default version. You may register other files below as needed.
 |
 */
-
 $app->configure('app');
+$app->configure('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -74,38 +74,41 @@ $app->configure('app');
 
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
-]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
-
-/*
-|--------------------------------------------------------------------------
-| Register Service Providers
-|--------------------------------------------------------------------------
-|
-| Here we will register all of the application's service providers which
-| are used to bind services into the container. Service providers are
-| totally optional, so you are not required to uncomment this line.
-|
-*/
-
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-/*
-|--------------------------------------------------------------------------
-| Load The Application Routes
-|--------------------------------------------------------------------------
-|
-| Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
-| can respond to, as well as the controllers that may handle them.
-|
-*/
-
+    ]);
+    
+    $app->routeMiddleware([
+            'auth' => App\Http\Middleware\Authenticate::class,
+        ]);
+        
+        /*
+        |--------------------------------------------------------------------------
+        | Register Service Providers
+        |--------------------------------------------------------------------------
+        |
+        | Here we will register all of the application's service providers which
+        | are used to bind services into the container. Service providers are
+        | totally optional, so you are not required to uncomment this line.
+        |
+        */
+        
+        $app->register(App\Providers\AppServiceProvider::class);
+        $app->register(App\Providers\AuthServiceProvider::class);
+        $app->register(App\Providers\EventServiceProvider::class);
+        $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+        $app->register(Laravel\Passport\PassportServiceProvider::class);
+        $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+        /*
+        |--------------------------------------------------------------------------
+        | Load The Application Routes
+        |--------------------------------------------------------------------------
+        |
+        | Next we will include the routes file so that they can all be added to
+        | the application. This will provide all of the URLs the application
+        | can respond to, as well as the controllers that may handle them.
+        |
+        */
+        
+\Dusterio\LumenPassport\LumenPassport::routes($app);
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {

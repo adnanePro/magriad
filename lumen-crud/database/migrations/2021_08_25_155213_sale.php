@@ -18,9 +18,10 @@ class Sale extends Migration
             $table->date('dateSale');
             $table->unsignedInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('product');
+            $table->float('pricePurchase');
             $table->float('price');
             $table->float('qte');
-            $table->text('observation');
+            $table->text('observation')->nullable();
             $table->timestamps();
         });
     }

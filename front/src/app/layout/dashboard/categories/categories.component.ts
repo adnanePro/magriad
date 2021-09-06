@@ -22,11 +22,6 @@ export class CategoriesComponent implements OnInit {
                     label: 'Les valeurs des catégories en  stock',
                     backgroundColor: '#42A5F5',
                     data: this.chartService.getValues(this.categories,'value')
-                },
-                {
-                    label: 'Quantité des produit en stock par catégorie ',
-                    backgroundColor: '#FFA726',
-                    data: this.chartService.getValues(this.categories,'qte')
                 }
             ]
         };

@@ -70,7 +70,7 @@
 
   </div>
   <p-dialog [header]="'Vente'" [(visible)]="display" [style]="{width: '50vw'}">
-    <app-new-sele [product]="productSelected"></app-new-sele>
+    <app-new-sele [product]="productSelected" (created)="getProducts()"></app-new-sele>
 </p-dialog>
 
 <p-confirmDialog #cd header="Confirmation " icon="pi pi-exclamation-triangle ">

@@ -18,10 +18,12 @@ $router->get('/', function () use ($router) {
 });
 $router->get('/test','TestController@getByPurchase');
 
-Route::group(['prefix' => 'api'], function () use ($controllers) {
+$router->post('/api/user/authentification','UserController@authenticate');
+
+Route::group(['prefix' => 'api','middleware' => 'auth'], function () use ($controllers) {
 
     Route::group(['prefix' => 'user'], function () {
-        Route::post("authentification", "UserController@authentification");
+        Route::get("authentification", "UserController@getUserConnected");
     });
     Route::group(['prefix' => 'maintenance'], function () {
         Route::post("get-by-purchase", "MaintenanceController@getByPurchase");

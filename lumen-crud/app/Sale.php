@@ -9,6 +9,12 @@ class Sale extends BaseModel
     public $table = 'sale';
     protected $appends = ['benefice'];
     
+    public static  function inCreating()
+    {
+        $data = app('request')->all();
+        $data['pricePurchase'] = Product::where('id',$data['product_id'])->first()->unitPrice;
+        return $data;
+    }
     
 
     public function product(){
@@ -20,11 +26,11 @@ class Sale extends BaseModel
     }
     public function getBeneficeAttribute(){
         
-        return round($this->qte *($this->price-Product::where('id',$this->product_id)->first()->unitPrice),2); 
+        return round($this->price - $this->pricePurchase,2);
      }
 
     protected $fillable = [
-        'dateSale','product_id','price','qte','observation'
+        'dateSale','product_id','price','qte','observation','pricePurchase'
     ];
     public  function afterCreate()
     {

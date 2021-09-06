@@ -29,6 +29,7 @@ class DashboardController extends Controller
         }
     public function index(){
         $dashboard['SallesAndPurchasesAndMaintenanceByDay']=$this->getSallesAndPurchasesAndMaintenanceByDay();
+        $dashboard['statistic'] = $this->statistic();
         return response($dashboard);
     }
 
@@ -52,7 +53,6 @@ class DashboardController extends Controller
             array_push($dates,$maintenance->dateMaintenance);
         }
         $dates = array_unique($dates);
-   //     dd($dates);
         $index = 0;
         $data= [];
         foreach ($dates as $date) {
@@ -72,6 +72,34 @@ class DashboardController extends Controller
             $data[$index]['maintenances'] = Maintenance::where('dateMaintenance',$date)->sum('price');
             $index++;
         };
+        return $data;
+    }
+    private function statistic(){
+        $data=[];
+        $mounth = $this->request->input('month',1);
+        $date_start = new DateTime();
+        $date_end = new DateTime();
+        $date_start->modify("-$mounth month");
+        $interval = [$date_start->format('Y-m-d'), $date_end->format('Y-m-d')];
+        $benifice=0;
+        $sales = Sale::whereBetween('dateSale',$interval)->get();
+      
+        foreach ($sales as $sale) {
+
+      
+            $benifice += $sale->benefice;
+        }
+        $data['benifice']= $benifice;
+        $data['maintenances'] = Maintenance::whereBetween('dateMaintenance',$interval)->sum('price');
+        $purchases = Purchase::whereBetween('datePurchase',$interval)->get();
+        $sum=0;
+        $transport=0;
+        foreach ($purchases as $purchase) {
+            $sum  +=  $purchase->price;
+            $transport  +=  $purchase->charges;
+        }
+        $data['purchases']=$sum;
+        $data['transport']=$transport;
         return $data;
     }
 
