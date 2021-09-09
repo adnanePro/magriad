@@ -39,9 +39,9 @@
                     <td>{{category.qte}}</td>
                     <td class="price">{{category.value}} DH</td>
                     
-                    <td *ngIf="category.lastPurchase; else elseBlocklastPurchase">{{category.lastPurchase}}</td>
+                    <td *ngIf="category.lastPurchase; else elseBlocklastPurchase">{{category.lastPurchase | date: "dd/MM/yyyy"}}</td>
                     <ng-template #elseBlocklastPurchase><td><span class="badge badge-danger mt-2">Indisponible</span></td></ng-template>
-                    <td *ngIf="category.lastSale; else elseBlockSale">{{category.lastSale}}</td>
+                    <td *ngIf="category.lastSale; else elseBlockSale">{{category.lastSale | date: "dd/MM/yyyy"}}</td>
                     <ng-template #elseBlockSale><td><span class="badge badge-danger mt-2">Indisponible</span></td></ng-template>                
                            
                     <td>
@@ -75,11 +75,12 @@
           <label for="exampleInputEmail1">Nom :</label>
           <input type="text" class="form-control rounded-0" id="exampleInputEmail1" aria-describedby="emailHelp"
            [(ngModel)]="category.name" name="name">
-     
+           <label for="exampleInputEmail1" *ngIf="submitted && !category.isValid()"  class="error">Ce champ est obligatoir</label>
+
 
         </div>
         <button type="button" class="btn btn-lightning rounded-0 mb-2 mr-2" (click)="updateOrCreate()">Valider</button>
-        <button type="button " class="btn btn-outline-lightning rounded-0 mb-2">Annuler</button>
+        <button type="button " class="btn btn-outline-lightning rounded-0 mb-2" (click)="display=false">Annuler</button>
       </form>
 </p-dialog>
 

@@ -14,6 +14,7 @@ export class CategoriesComponent implements OnInit {
   buttonLabel:string;
   loading=true;
   display=false;
+  submitted=false;
   constructor(private categoryService:CategoryService,private confirmationService: ConfirmationService) {
     this.getCategories();
    }
@@ -22,14 +23,21 @@ export class CategoriesComponent implements OnInit {
   }
 
   updateOrCreate(){
-    this.categoryService.updateOrCreate(this.category).subscribe(()=>{
+    this.submitted = true;
+    if(this.category.isValid()){
+       this.categoryService.updateOrCreate(this.category).subscribe(()=>{
       this.getCategories();
       this.display=false;
+      this.submitted=false;
     })
+    }
+   
+
   }
   openDialog(){
+    this.submitted=false;
     this.category = new Category();
-
+    this.buttonLabel = 'Nouveau catégorie'
     this.display=true;
   }
   private getCategories(){
@@ -39,6 +47,8 @@ export class CategoriesComponent implements OnInit {
     })
   }
   edit(e){
+    this.buttonLabel = 'Modification'
+
     this.category = new Category().make(e);
     this.display=true;
   }

@@ -7,12 +7,14 @@ import { CategoriesComponent } from './categories/categories.component';
 import { PurchasesSalesMaintancesComponent } from './purchases-sales-maintances/purchases-sales-maintances.component';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
+import { LastSalesComponent } from './last-sales/last-sales.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CategoriesComponent,
     PurchasesSalesMaintancesComponent,
+    LastSalesComponent,
   ],
   imports: [
     CommonModule,

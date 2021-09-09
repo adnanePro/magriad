@@ -30,6 +30,7 @@ Route::group(['prefix' => 'api','middleware' => 'auth'], function () use ($contr
     });
     Route::group(['prefix' => 'sale'], function () {
         Route::post("get-by-purchase", "SaleController@getByPurchase");
+        Route::get("get-last-five-sales", "SaleController@getLastFiveSales");
     });
 
     Route::group(['prefix' => 'product'], function () {

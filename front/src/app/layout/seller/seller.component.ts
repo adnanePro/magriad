@@ -13,6 +13,7 @@ export class SellerComponent implements OnInit {
   seller:Seller = new Seller();
   buttonLabel:string;
   display=false;
+  submitted=false;
   loading=true;
   constructor(private sellerService:SellerService,private confirmationService: ConfirmationService) {
     this.getCategories();
@@ -22,14 +23,23 @@ export class SellerComponent implements OnInit {
   }
 
   updateOrCreate(){
-    this.sellerService.updateOrCreate(this.seller).subscribe(()=>{
+    this.submitted = true;
+    if(this.seller.isValid()){
+
+       this.sellerService.updateOrCreate(this.seller).subscribe(()=>{
       this.getCategories();
       this.display=false;
+      this.submitted = false;
     })
   }
-  openDialog(){
+  
+  
+  
+}
+openDialog(){
+    this.submitted = false;
     this.seller = new Seller();
-
+  this.buttonLabel="Nouveau veunder"
     this.display=true;
   }
   private getCategories(){
@@ -43,6 +53,8 @@ export class SellerComponent implements OnInit {
     this.display=true;
   }
   delete(seller: Seller) {
+    this.buttonLabel = 'Modification'
+
     this.confirmationService.confirm({
       message: 'Voulez vous vraiment supprimer cet element',
       accept: () => {

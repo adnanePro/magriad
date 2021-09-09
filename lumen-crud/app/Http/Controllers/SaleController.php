@@ -45,5 +45,15 @@ class SaleController extends Controller
             return response($res, 500);
         }
     }
+    public function getLastFiveSales(){
+        try {
+            $sales = Sale::with('product')->orderBy('dateSale','DESC')->limit(5)->get();
+            return response($sales, 200);
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $res['status'] = false;
+            $res['message'] = $ex->getMessage();
+            return response($res, 500);
+        }
+    }
   
 }

@@ -6,4 +6,6 @@ export class Category extends BaseModel {
    lastSale:any;
    products_count:any;
    lastPurchase:any;
+   protected attributRequired = ['name'];
+
 }

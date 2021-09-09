@@ -8,4 +8,6 @@ export class Seller extends BaseModel {
    pivot:{purchase_id:string,seller_id}
    lastPurchase:any;
 
+   protected attributRequired = ['name','phone','cin','city'];
+
 }
